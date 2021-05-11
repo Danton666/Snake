@@ -4,4 +4,4 @@
 #ignore exe file Snake
 Snake
 
-bin/
+./bin
