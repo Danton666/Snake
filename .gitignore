@@ -1,7 +1,5 @@
 #ignore bin files .o in the bin directory
-*.o
+./bin/
 
 #ignore exe file Snake
 Snake
-
-bin/**
