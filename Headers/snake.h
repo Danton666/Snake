@@ -4,9 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <list>
 #include "apple.h"
-
-using namespace sf;
-using namespace std;
+#include "un.h"
 
 class Snake
 {
@@ -27,23 +25,23 @@ public:
 	Snake(RenderWindow* window);
 	Snake(RenderWindow* window, const Vector2f& position);
 
-	void setColor		(const Color& color);
-	void setPosition	(const Vector2f& pos);
+	void setColor(const Color& color);
+	void setPosition(const Vector2f& pos);
 	void setOutlineColor(const Color& color = Color(Color::Black), unsigned int thickness = 1);
 
-	const Color& 	getColor	() const;
-	const Vector2f&	getPosition	() const;
-	const Vector2f& getSize		() const;
-	RectangleShape& getHead		();
-	RectangleShape& getLast		();
+	const Color& getColor() const;
+	const Vector2f&	getPosition() const;
+	const Vector2f& getSize() const;
+	RectangleShape& getHead();
+	RectangleShape& getLast();
 
 	bool isDead(const Vector2f& applePos);
 
-	void addFirst	(const Vector2f& pos);
-	void addLast	(const Vector2f& pos);
+	void addFirst(const Vector2f& pos);
+	void addLast(const Vector2f& pos);
 
-	void eraseLast	();
-	void eraseFirst	();
+	void eraseLast();
+	void eraseFirst();
 
 	void move(const Vector2f& offset);
 

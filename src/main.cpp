@@ -1,9 +1,7 @@
 #include "run.h"
 #include <iostream>
 
-using namespace std;
-
-int main(int argc, char const *argv[])
+int main()
 {
 	unsigned int fps = 5;
 

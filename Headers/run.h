@@ -3,8 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
-
-using namespace sf;
+#include "un.h"
 
 int run(RenderWindow& window, unsigned int fps);
 

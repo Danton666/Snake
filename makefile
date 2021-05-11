@@ -31,3 +31,9 @@ clean:
 
 delete:
 	rm -f Snake
+
+compile:
+	for f in $(shell ls src/); do \
+		$(CXXC) $(COMPFL) $(SRC)$$f -o \
+	       	$(BIN)$(echo $$f | cut -d '.' -f 1) $(INC); \
+	done

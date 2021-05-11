@@ -2,9 +2,7 @@
 #define __APPLE_H__
 
 #include <SFML/Graphics.hpp>
-
-using namespace sf;
-using namespace std;
+#include "un.h"
 
 class Apple
 {
@@ -12,18 +10,21 @@ class Apple
 private:
 	RenderWindow* m_window;
 
-	CircleShape m_apple;
-	float m_radius;
-	Color m_color;
-	Vector2f m_pos;
+	CircleShape m_apple = CircleShape(12.f);
+	Color m_color = Color(Color::Red);
+	Vector2f m_pos = Vector2f(0.f, 0.f);
 
 
 public:
-	Apple(const Color& apple_color, float radius, const Vector2f& pos, RenderWindow* window);
-
-	Vector2f getPosition() const;
+	Apple(RenderWindow* window, const Vector2f& position = Vector2f(0.f, 0.f));
 
 	void setPosition(const Vector2f& pos);
+	void setColor(const Color& color);
+	void setPointCount(size_t count);
+
+	const Vector2f&	getPosition() const;
+	const Color& getColor() const;
+	size_t getPointCount() const;
 
 	void draw();
 };

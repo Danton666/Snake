@@ -4,7 +4,7 @@
 
 Snake::Snake(RenderWindow* window) : Snake(window, Vector2f(0.f, 0.f)) {}
 
-Snake::Snake(RenderWindow* window, const Vector2f& position = Vector2f(0.f, 0.f)) : m_window(window) 
+Snake::Snake(RenderWindow* window, const Vector2f& position) : m_window(window) 
 {
 	RectangleShape head(position);
 

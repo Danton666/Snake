@@ -5,14 +5,14 @@
 
 void fillArrays(int* X, int* Y, size_t x, size_t y)
 {
-	for(int i = 0; i < x; ++i)
+	for(size_t i = 0; i < x; ++i)
 		X[i] = (i + 1) * 25;
 
-	for (int i = 0; i < y; ++i)
+	for (size_t i = 0; i < y; ++i)
 		Y[i] = (i + 1) * 25;
 }
 
-void controlMoving(const Event& event, Snake& snake, std::list<Event>& eventList, const Vector2u& winSize)
+void controlMoving(const Event& event, Snake& snake, std::list<Event>& eventList)
 {
 	if(event.key.code == Keyboard::Up)
 	{
@@ -95,12 +95,11 @@ int run(RenderWindow& window, unsigned int fps)
 
 	fillArrays(X, Y, x, y);
 
-	Snake snake(&window, Vector2f(300.f, 200.f));
+	Snake snake(&window);
 	snake.setOutlineColor();
-
-	Apple apple(Color::Red, 12.5f, Vector2f(200.f, 300.f), &window);
-
 	snake.setPosition(Vector2f(300.f, 200.f));
+
+	Apple apple(&window, Vector2f(X[0 + rand() % x], Y[0 + rand() % y]));
 
 	/*
 	* The window are opening
@@ -139,7 +138,7 @@ int run(RenderWindow& window, unsigned int fps)
 		* Snake's moving when keys were pressed
 		* The snake is controlled by <Up>, <Down>, <Right>, <Left>
 		*/
-		controlMoving(event, snake, eventList, window.getSize());
+		controlMoving(event, snake, eventList);
 
 		window.clear();
 
