@@ -1,78 +1,45 @@
 #include "snake.h"
 
-Snake::Snake(RenderWindow* window) :
-									 m_seps(true), 
-									 m_snakeColor(Color::Green), 
-									 m_thickness(1),  
-									 m_window(window),
-									 m_size(Vector2f(25.f, 25.f)),
-									 m_pos(Vector2f(300.f, 200.f))
+/*Constructors {...*/
+
+Snake::Snake(RenderWindow* window) : Snake(window, Vector2f(0.f, 0.f)) {}
+
+Snake::Snake(RenderWindow* window, const Vector2f& position = Vector2f(0.f, 0.f)) : m_window(window) 
+{
+	RectangleShape head(position);
+
+	head.setSize(m_size);
+	head.setFillColor(m_snakeColor);
+
+	m_snake.push_back(head);	
+}
+/* ...} Constructors*/
+
+/*Methods {...*/
+void Snake::setColor(const Color& color)
+{
+	for(auto& el : m_snake)
+		el.setFillColor(color);
+}
+
+void Snake::setPosition(const Vector2f& pos) { m_snake.back().setPosition(pos); }
+
+void Snake::setOutlineColor(const Color& color, unsigned int thickness)
+{
+	for(auto& el : m_snake)
 	{
-		RectangleShape head(m_pos);
-		head.setSize(m_size);
-		head.setFillColor(m_snakeColor);
-
-		if(m_seps)
-		{
-			head.setOutlineColor(m_sepColor);
-			head.setOutlineThickness(m_thickness);
-		}
-
-		m_snake.push_back(head); 
+		el.setOutlineColor(color);
+		el.setOutlineThickness(thickness);
 	}
+}
 
-Snake::Snake(const Color& snakeColor, bool seps, const Vector2f& position, const Vector2f& size, RenderWindow* window) : 
-																											m_snakeColor(snakeColor), 
-																											m_seps(seps), 
-																											m_pos(position), 
-																											m_size(size), 
-																											m_window(window),
-																											m_thickness(3)
-	{
-		RectangleShape head(position);
-		head.setSize(size);
-		head.setFillColor(snakeColor);
+const Color& 	Snake::getColor() const { return m_snake.back().getFillColor(); }
+const Vector2f& Snake::getPosition() const { return m_snake.front().getPosition(); }
 
-		if(seps)
-		{
-			head.setOutlineColor(m_sepColor);
-			head.setOutlineThickness(m_thickness);
-		}
-
-		m_snake.push_back(head);
-	}
-
-Vector2f Snake::getPosition() const { return m_snake.front().getPosition(); }
+const Vector2f& Snake::getSize() const { return m_snake.back().getSize(); }
 
 RectangleShape& Snake::getHead() { return m_snake.front(); } 
 RectangleShape& Snake::getLast() { return m_snake.back(); }
-
-void Snake::addFirst(const Vector2f& pos)
-	{
-		RectangleShape part(m_size);
-		part.setFillColor(m_snakeColor);
-		part.setOutlineColor(m_sepColor);
-		part.setOutlineThickness(m_thickness);
-		part.setPosition(pos);
-
-		m_snake.push_front(part);
-	}
-
-void Snake::addLast(const Vector2f& pos)
-{
-		RectangleShape part(m_size);
-		part.setFillColor(m_snakeColor);
-		part.setOutlineColor(m_sepColor);
-		part.setOutlineThickness(m_thickness);
-		part.setPosition(pos);
-
-		m_snake.push_back(part);
-}
-
-void Snake::eraseLast() { m_snake.pop_back(); }
-void Snake::eraseFirst() { m_snake.pop_front(); }
-
-void Snake::setPosition(const Vector2f& pos) { m_snake.back().setPosition(pos); }
 
 bool Snake::isDead(const Vector2f& applePos)
 {
@@ -85,10 +52,34 @@ bool Snake::isDead(const Vector2f& applePos)
 	return false;
 }
 
-void Snake::move(const Vector2f& offset) { m_snake.front().setPosition(m_snake.front().getPosition() + offset); }
+void Snake::addFirst(const Vector2f& pos)
+{
+	RectangleShape part(m_size);
+	part.setFillColor(m_snakeColor);
+	part.setPosition(pos);
+
+	m_snake.push_front(part);
+}
+
+void Snake::addLast(const Vector2f& pos)
+{
+		RectangleShape part(m_size);
+
+		part.setFillColor(m_snakeColor);
+		part.setPosition(pos);
+
+		m_snake.push_back(part);
+}
+
+void Snake::eraseLast() { m_snake.pop_back(); }
+void Snake::eraseFirst() { m_snake.pop_front(); }
+
+void Snake::move(const Vector2f& offset) { m_snake.front().move(offset); }
 
 void Snake::draw()
 {
 	for(const auto& el : m_snake)
 		m_window->draw(el);
 }
+
+/*...} Methods*/

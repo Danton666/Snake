@@ -14,38 +14,40 @@ class Snake
 private:
 	RenderWindow* m_window;
 
-	Color m_snakeColor;
-	Vector2f m_pos;
-	Vector2f m_size;
+	Color m_snakeColor = Color(Color::Green);
+	Vector2f m_pos = Vector2f(0.f, 0.f);
+	Vector2f m_size = Vector2f(25.f, 25.f);
 
-	bool m_seps;
-	Color m_sepColor;
-	unsigned int m_thickness;
+	Color m_outColor = Color(Color::Black);
+	unsigned int m_thickness = 0;
 
-	list<RectangleShape> m_snake;
+	list<RectangleShape> m_snake = {};
 
 public:
 	Snake(RenderWindow* window);
-	Snake(const Color& snakeColor, bool seps, const Vector2f& position, const Vector2f& size, RenderWindow* window);
+	Snake(RenderWindow* window, const Vector2f& position);
 
-	Vector2f getPosition() const;
+	void setColor		(const Color& color);
+	void setPosition	(const Vector2f& pos);
+	void setOutlineColor(const Color& color = Color(Color::Black), unsigned int thickness = 1);
 
-	RectangleShape& getHead();
-	RectangleShape& getLast();
-
-	void setPosition(const Vector2f& pos);
+	const Color& 	getColor	() const;
+	const Vector2f&	getPosition	() const;
+	const Vector2f& getSize		() const;
+	RectangleShape& getHead		();
+	RectangleShape& getLast		();
 
 	bool isDead(const Vector2f& applePos);
 
-	void addFirst(const Vector2f& pos);
-	void addLast(const Vector2f& pos);
+	void addFirst	(const Vector2f& pos);
+	void addLast	(const Vector2f& pos);
 
-	void eraseLast();
-	void eraseFirst();
+	void eraseLast	();
+	void eraseFirst	();
 
 	void move(const Vector2f& offset);
-	void draw();
 
+	void draw();
 };
 
 

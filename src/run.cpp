@@ -95,7 +95,9 @@ int run(RenderWindow& window, unsigned int fps)
 
 	fillArrays(X, Y, x, y);
 
-	Snake snake(&window);
+	Snake snake(&window, Vector2f(300.f, 200.f));
+	snake.setOutlineColor();
+
 	Apple apple(Color::Red, 12.5f, Vector2f(200.f, 300.f), &window);
 
 	snake.setPosition(Vector2f(300.f, 200.f));
