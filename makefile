@@ -30,4 +30,4 @@ clean:
 	rm -rf $(BIN)*.o
 
 delete:
-	rm -f main
+	rm -f Snake
