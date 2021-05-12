@@ -50,22 +50,18 @@ void controlMoving(const Event& event, Snake& snake, std::list<Event>& eventList
 	}
 }
 
-void appleIsEaten(Snake& snake, Apple& apple,  RenderWindow& window, int* X, int* Y, size_t x, size_t y)
+bool isOutOfBounds(const Snake& snake, const RenderWindow& window)
 {
-	snake.addLast(Vector2f(snake.getPosition()));
-
-	size_t first = 0 + rand() % x;
-	size_t second = 0 + rand() % y;	
-
-	apple.setPosition(Vector2f(X[first], Y[second]));
-
-	window.clear();
-	snake.draw();
-	window.display();
-
+	return
+	(	
+		snake.getPosition().x >= window.getSize().x ||
+		snake.getPosition().x <= 0.0 ||
+		snake.getPosition().y >= window.getSize().y || 
+		snake.getPosition().y <= 0.0
+	);
 }
 
-int run(RenderWindow& window, unsigned int fps)
+int run(RenderWindow& window, unsigned int speed)
 {
 	srand(time(0));
 
@@ -92,6 +88,9 @@ int run(RenderWindow& window, unsigned int fps)
 	while(window.isOpen())
 	{
 		snake.addLast(snake.getPosition());
+
+		bool isEatYourself = snake.isDead(snake.getPosition());
+
 		snake.eraseFirst();
 
 		Event event;
@@ -105,20 +104,17 @@ int run(RenderWindow& window, unsigned int fps)
 		* If postions are equal then
 		* It means apple is eaten
 		*/
-		if((snake.getLast().getPosition().x == apple.getPosition().x) && 
-			snake.getLast().getPosition().y == apple.getPosition().y)
+		if((snake.getPosition().x == apple.getPosition().x) && 
+			snake.getPosition().y == apple.getPosition().y)
 		{
-			appleIsEaten(snake, apple, window, X, Y, x, y);
+			snake.addFirst(snake.getPosition());
+			apple.setPosition(Vector2f(X[0 + rand() % x], Y[0 + rand() % y]));
 			/*increase snake's speed*/
-			window.setFramerateLimit(++fps);
+			snake.setSpeed(++speed);
 		}
-		else if(snake.getLast().getPosition().x >= window.getSize().x ||
-				snake.getLast().getPosition().x <= 0.0 ||
-				snake.getLast().getPosition().y >= window.getSize().y || 
-				snake.getLast().getPosition().y <= 0.0
-				)
+		else if(isOutOfBounds(snake, window))
 			return 1;
-		else if(snake.isDead(apple.getPosition()))
+		else if(isEatYourself)
 			return 1;
 
 		/*

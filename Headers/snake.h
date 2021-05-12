@@ -43,6 +43,8 @@ public:
 	void eraseLast();
 	void eraseFirst();
 
+	void setSpeed(unsigned int val);
+
 	void move(const Vector2f& offset);
 
 	void draw();

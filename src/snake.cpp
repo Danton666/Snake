@@ -75,6 +75,8 @@ void Snake::addLast(const Vector2f& pos)
 void Snake::eraseLast() { m_snake.pop_back(); }
 void Snake::eraseFirst() { m_snake.pop_front(); }
 
+void Snake::setSpeed(unsigned int val) { m_window->setFramerateLimit(val); }
+
 void Snake::move(const Vector2f& offset) { m_snake.back().move(offset); }
 
 void Snake::draw()
