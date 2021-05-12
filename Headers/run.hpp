@@ -5,6 +5,6 @@
 #include <SFML/Window.hpp>
 #include "un.hpp"
 
-int run(RenderWindow& window, unsigned int speed = 5);
+int run(RenderWindow& window);
 
 #endif //__RUN_HPP__

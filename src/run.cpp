@@ -61,11 +61,16 @@ bool isOutOfBounds(const Snake& snake, const RenderWindow& window)
 	);
 }
 
-int run(RenderWindow& window, unsigned int speed)
+int run(RenderWindow& window)
 {
 	srand(time(0));
 
 	std::list<Event> eventList;
+
+	unsigned int speed = 5;
+
+	/*Speed of the snake*/
+	window.setFramerateLimit(speed);
 
 	size_t x = (window.getSize().x / 25) - 1;
 	size_t y = (window.getSize().y / 25) - 1;
