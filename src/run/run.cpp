@@ -18,8 +18,8 @@ int run(RenderWindow& window)
 	/*Speed of the snake*/
 	window.setFramerateLimit(speed);
 
-	size_t x = (window.getSize().x / 25) - 1;
-	size_t y = (window.getSize().y / 25) - 1;
+	size_t x = (window.getSize().x / 25) - 3;
+	size_t y = (window.getSize().y / 25) - 3;
 
 	int X[x];
 	int Y[y];
