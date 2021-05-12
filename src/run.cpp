@@ -16,23 +16,27 @@ void controlMoving(const Event& event, Snake& snake, std::list<Event>& eventList
 {
 	if(event.key.code == Keyboard::Up)
 	{
-		snake.addLast(Vector2f(snake.getLast().getPosition().x, snake.getLast().getPosition().y - 25.f));
-		snake.eraseFirst();
+		// snake.addLast(Vector2f(snake.getLast().getPosition().x, snake.getLast().getPosition().y - 25.f));
+		// snake.eraseFirst();
+		snake.move(Vector2f(0.f, -25.f));
 	}
 	else if(event.key.code == Keyboard::Down)
 	{
-		snake.addLast(Vector2f(snake.getLast().getPosition().x, snake.getLast().getPosition().y + 25.f));
-		snake.eraseFirst();
+		// snake.addLast(Vector2f(snake.getLast().getPosition().x, snake.getLast().getPosition().y + 25.f));
+		// snake.eraseFirst();
+		snake.move(Vector2f(0.f, 25.f));
 	}
 	else if(event.key.code == Keyboard::Left)
 	{
-		snake.addLast(Vector2f(snake.getLast().getPosition().x - 25.f, snake.getLast().getPosition().y));
-		snake.eraseFirst();
+		// snake.addLast(Vector2f(snake.getLast().getPosition().x - 25.f, snake.getLast().getPosition().y));
+		// snake.eraseFirst();
+		snake.move(Vector2f(-25.f, 0.f));
 	}
 	else if(event.key.code == Keyboard::Right)
 	{
-		snake.addLast(Vector2f(snake.getLast().getPosition().x + 25.f, snake.getLast().getPosition().y));
-		snake.eraseFirst();
+		// snake.addLast(Vector2f(snake.getLast().getPosition().x + 25.f, snake.getLast().getPosition().y));
+		// snake.eraseFirst();
+		snake.move(Vector2f(25.f, 0.f));
 	}
 	else 
 	{
@@ -41,23 +45,27 @@ void controlMoving(const Event& event, Snake& snake, std::list<Event>& eventList
 		switch(eventList.back().key.code)
 		{
 			case Keyboard::Up:
-				snake.addLast(Vector2f(snake.getLast().getPosition().x, snake.getLast().getPosition().y - 25.f));
-				snake.eraseFirst();
+				// snake.addLast(Vector2f(snake.getLast().getPosition().x, snake.getLast().getPosition().y - 25.f));
+				// snake.eraseFirst();
+				snake.move(Vector2f(0.f, -25.f));
 				break;
 
 			case Keyboard::Down:
-				snake.addLast(Vector2f(snake.getLast().getPosition().x, snake.getLast().getPosition().y + 25.f));
-				snake.eraseFirst();
+				// snake.addLast(Vector2f(snake.getLast().getPosition().x, snake.getLast().getPosition().y + 25.f));
+				// snake.eraseFirst();
+				snake.move(Vector2f(0.f, 25.f));
 				break;
 
 			case Keyboard::Left:
-				snake.addLast(Vector2f(snake.getLast().getPosition().x - 25.f, snake.getLast().getPosition().y));
-				snake.eraseFirst();
+				// snake.addLast(Vector2f(snake.getLast().getPosition().x - 25.f, snake.getLast().getPosition().y));
+				// snake.eraseFirst();
+				snake.move(Vector2f(-25.f, 0.f));
 				break;
 
 			case Keyboard::Right:
-				snake.addLast(Vector2f(snake.getLast().getPosition().x + 25.f, snake.getLast().getPosition().y));
-				snake.eraseFirst();
+				// snake.addLast(Vector2f(snake.getLast().getPosition().x + 25.f, snake.getLast().getPosition().y));
+				// snake.eraseFirst();
+				snake.move(Vector2f(25.f, 0.f));
 				break;
 
 			default:
@@ -68,7 +76,7 @@ void controlMoving(const Event& event, Snake& snake, std::list<Event>& eventList
 
 void appleIsEaten(Snake& snake, Apple& apple,  RenderWindow& window, int* X, int* Y, size_t x, size_t y)
 {
-	snake.addLast(Vector2f(snake.getLast().getPosition().x, snake.getLast().getPosition().y));
+	snake.addLast(Vector2f(snake.getPosition()));
 
 	size_t first = 0 + rand() % x;
 	size_t second = 0 + rand() % y;	
@@ -107,6 +115,9 @@ int run(RenderWindow& window, unsigned int fps)
 	*/
 	while(window.isOpen())
 	{
+		snake.addLast(snake.getPosition());
+		snake.eraseFirst();
+
 		Event event;
 		eventList.push_back(event);
 		while(window.pollEvent(event))
@@ -139,6 +150,9 @@ int run(RenderWindow& window, unsigned int fps)
 		* The snake is controlled by <Up>, <Down>, <Right>, <Left>
 		*/
 		controlMoving(event, snake, eventList);
+
+		if(eventList.size() > 5)
+			eventList.pop_front();
 
 		window.clear();
 

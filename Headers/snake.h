@@ -32,8 +32,8 @@ public:
 	const Color& getColor() const;
 	const Vector2f&	getPosition() const;
 	const Vector2f& getSize() const;
-	RectangleShape& getHead();
-	RectangleShape& getLast();
+	const RectangleShape& getFirst();
+	const RectangleShape& getLast();
 
 	bool isDead(const Vector2f& applePos);
 

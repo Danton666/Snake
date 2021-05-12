@@ -34,12 +34,12 @@ void Snake::setOutlineColor(const Color& color, unsigned int thickness)
 }
 
 const Color& 	Snake::getColor() const { return m_snake.back().getFillColor(); }
-const Vector2f& Snake::getPosition() const { return m_snake.front().getPosition(); }
+const Vector2f& Snake::getPosition() const { return m_snake.back().getPosition(); }
 
 const Vector2f& Snake::getSize() const { return m_snake.back().getSize(); }
 
-RectangleShape& Snake::getHead() { return m_snake.front(); } 
-RectangleShape& Snake::getLast() { return m_snake.back(); }
+const RectangleShape& Snake::getFirst() { return m_snake.front(); } 
+const RectangleShape& Snake::getLast() { return m_snake.back(); }
 
 bool Snake::isDead(const Vector2f& applePos)
 {
@@ -55,6 +55,7 @@ bool Snake::isDead(const Vector2f& applePos)
 void Snake::addFirst(const Vector2f& pos)
 {
 	RectangleShape part(m_size);
+
 	part.setFillColor(m_snakeColor);
 	part.setPosition(pos);
 
@@ -74,7 +75,7 @@ void Snake::addLast(const Vector2f& pos)
 void Snake::eraseLast() { m_snake.pop_back(); }
 void Snake::eraseFirst() { m_snake.pop_front(); }
 
-void Snake::move(const Vector2f& offset) { m_snake.front().move(offset); }
+void Snake::move(const Vector2f& offset) { m_snake.back().move(offset); }
 
 void Snake::draw()
 {
