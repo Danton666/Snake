@@ -15,56 +15,32 @@ void fillArrays(int* X, int* Y, size_t x, size_t y)
 void controlMoving(const Event& event, Snake& snake, std::list<Event>& eventList)
 {
 	if(event.key.code == Keyboard::Up)
-	{
-		// snake.addLast(Vector2f(snake.getLast().getPosition().x, snake.getLast().getPosition().y - 25.f));
-		// snake.eraseFirst();
 		snake.move(Vector2f(0.f, -25.f));
-	}
 	else if(event.key.code == Keyboard::Down)
-	{
-		// snake.addLast(Vector2f(snake.getLast().getPosition().x, snake.getLast().getPosition().y + 25.f));
-		// snake.eraseFirst();
 		snake.move(Vector2f(0.f, 25.f));
-	}
 	else if(event.key.code == Keyboard::Left)
-	{
-		// snake.addLast(Vector2f(snake.getLast().getPosition().x - 25.f, snake.getLast().getPosition().y));
-		// snake.eraseFirst();
 		snake.move(Vector2f(-25.f, 0.f));
-	}
 	else if(event.key.code == Keyboard::Right)
-	{
-		// snake.addLast(Vector2f(snake.getLast().getPosition().x + 25.f, snake.getLast().getPosition().y));
-		// snake.eraseFirst();
 		snake.move(Vector2f(25.f, 0.f));
-	}
-	else 
+	else
 	{
 		eventList.pop_back();
 
 		switch(eventList.back().key.code)
 		{
 			case Keyboard::Up:
-				// snake.addLast(Vector2f(snake.getLast().getPosition().x, snake.getLast().getPosition().y - 25.f));
-				// snake.eraseFirst();
 				snake.move(Vector2f(0.f, -25.f));
 				break;
 
 			case Keyboard::Down:
-				// snake.addLast(Vector2f(snake.getLast().getPosition().x, snake.getLast().getPosition().y + 25.f));
-				// snake.eraseFirst();
 				snake.move(Vector2f(0.f, 25.f));
 				break;
 
 			case Keyboard::Left:
-				// snake.addLast(Vector2f(snake.getLast().getPosition().x - 25.f, snake.getLast().getPosition().y));
-				// snake.eraseFirst();
 				snake.move(Vector2f(-25.f, 0.f));
 				break;
 
 			case Keyboard::Right:
-				// snake.addLast(Vector2f(snake.getLast().getPosition().x + 25.f, snake.getLast().getPosition().y));
-				// snake.eraseFirst();
 				snake.move(Vector2f(25.f, 0.f));
 				break;
 
