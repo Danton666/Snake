@@ -1,65 +1,11 @@
-#include "run.hpp"
+#include "run/run.hpp"
+#include "run/fillArrays.hpp"
+#include "run/controlMoving.hpp"
+#include "run/isOutOfBounds.hpp"
+
 #include "snake.hpp"
 #include "apple.hpp"
 #include <ctime>
-
-void fillArrays(int* X, int* Y, size_t x, size_t y)
-{
-	for(size_t i = 0; i < x; ++i)
-		X[i] = (i + 1) * 25;
-
-	for (size_t i = 0; i < y; ++i)
-		Y[i] = (i + 1) * 25;
-}
-
-void controlMoving(const Event& event, Snake& snake, std::list<Event>& eventList)
-{
-	if(event.key.code == Keyboard::Up)
-		snake.move(Vector2f(0.f, -25.f));
-	else if(event.key.code == Keyboard::Down)
-		snake.move(Vector2f(0.f, 25.f));
-	else if(event.key.code == Keyboard::Left)
-		snake.move(Vector2f(-25.f, 0.f));
-	else if(event.key.code == Keyboard::Right)
-		snake.move(Vector2f(25.f, 0.f));
-	else
-	{
-		eventList.pop_back();
-
-		switch(eventList.back().key.code)
-		{
-			case Keyboard::Up:
-				snake.move(Vector2f(0.f, -25.f));
-				break;
-
-			case Keyboard::Down:
-				snake.move(Vector2f(0.f, 25.f));
-				break;
-
-			case Keyboard::Left:
-				snake.move(Vector2f(-25.f, 0.f));
-				break;
-
-			case Keyboard::Right:
-				snake.move(Vector2f(25.f, 0.f));
-				break;
-
-			default:
-				break;
-		}
-	}
-}
-
-bool isOutOfBounds(const Snake& snake, const RenderWindow& window)
-{
-	return
-	(	
-		snake.getPosition().x >= window.getSize().x ||
-		snake.getPosition().x <= 0.0 ||
-		snake.getPosition().y >= window.getSize().y || 
-		snake.getPosition().y <= 0.0
-	);
-}
 
 int run(RenderWindow& window)
 {

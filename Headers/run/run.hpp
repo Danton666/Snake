@@ -1,7 +1,6 @@
 #ifndef __RUN_HPP__
 #define __RUN_HPP__
 
-#include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include "un.hpp"
 
