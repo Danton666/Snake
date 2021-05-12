@@ -41,11 +41,8 @@ const Vector2f& Snake::getSize() const { return m_snake.back().getSize(); }
 const RectangleShape& Snake::getFirst() { return m_snake.front(); } 
 const RectangleShape& Snake::getLast() { return m_snake.back(); }
 
-bool Snake::isDead(const Vector2f& applePos)
+bool Snake::isDead()
 {
-	if(applePos == m_snake.back().getPosition())
-		return false;
-
 	for(auto it = m_snake.begin(); it != --(m_snake.end()); ++it)
 		if((*it).getPosition() == m_snake.back().getPosition())
 			return true;

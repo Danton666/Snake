@@ -35,7 +35,7 @@ public:
 	const RectangleShape& getFirst();
 	const RectangleShape& getLast();
 
-	bool isDead(const Vector2f& applePos);
+	bool isDead();
 
 	void addFirst(const Vector2f& pos);
 	void addLast(const Vector2f& pos);

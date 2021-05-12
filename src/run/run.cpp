@@ -38,10 +38,9 @@ int run(RenderWindow& window)
 	*/
 	while(window.isOpen())
 	{
+		bool isEatYourself = snake.isDead();
+
 		snake.addLast(snake.getPosition());
-
-		bool isEatYourself = snake.isDead(snake.getPosition());
-
 		snake.eraseFirst();
 
 		Event event;
