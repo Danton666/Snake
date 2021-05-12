@@ -1,6 +1,6 @@
-#include "run.h"
-#include "snake.h"
-#include "apple.h"
+#include "run.hpp"
+#include "snake.hpp"
+#include "apple.hpp"
 #include <ctime>
 
 void fillArrays(int* X, int* Y, size_t x, size_t y)
