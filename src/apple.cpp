@@ -1,11 +1,11 @@
 #include "apple.hpp"
 
 Apple::Apple(RenderWindow* window, const Vector2f& position) : m_window(window)
-{	
-	m_pos = position;
+{   
+    m_pos = position;
 
-	m_apple.setFillColor(m_color);
-	m_apple.setPosition(position);
+    m_apple.setFillColor(m_color);
+    m_apple.setPosition(position);
 }
 
 void Apple::setPosition(const Vector2f& pos) { m_apple.setPosition(pos); }
