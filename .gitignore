@@ -1,5 +1,7 @@
 #ignore bin files .o in the bin directory
 bin/
 
+*.swp
+
 #ignore exe file Snake
 Snake

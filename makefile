@@ -28,15 +28,7 @@ run.o: $(SRC)run/run.cpp
 main.o: $(SRC)main.cpp
 	$(CXXC) $(COMPFL) $(SRC)main.cpp -o $(BIN)main.o $(INC)
 
-controlMoving.o: $(SRC)run/controlMoving.cpp
-	$(CXXC) $(COMPFL) $(SRC)run/controlMoving.cpp -o $(BIN)controlMoving.o $(INC)
-
-fillArrays.o: $(SRC)run/fillArrays.cpp
-	$(CXXC) $(COMPFL) $(SRC)run/fillArrays.cpp -o $(BIN)fillArrays.o $(INC)
-
-isOutOfBounds.o: $(SRC)run/isOutOfBounds.cpp
-	$(CXXC) $(COMPFL) $(SRC)run/isOutOfBounds.cpp -o $(BIN)isOutOfBounds.o $(INC)
-
+include src/run/makefile
 
 .PHONY:
 	clean, delete
@@ -45,4 +37,3 @@ clean:
 
 delete:
 	rm -f Snake
-

@@ -1,10 +1,8 @@
-func: controlMoving.o fillArrays.o isOutOfBounds.o
+controlMoving.o: $(SRC)run/controlMoving.cpp
+	$(CXXC) $(COMPFL) $(SRC)run/controlMoving.cpp -o $(BIN)controlMoving.o $(INC)
 
-controlMoving.o:./src/run/controlMoving.cpp
-	$(CXXC) $(COMPFL) ./src/run/controlMoving.cpp -o $(BIN)run/controlMoving.o $(INC)
+fillArrays.o: $(SRC)run/fillArrays.cpp
+	$(CXXC) $(COMPFL) $(SRC)run/fillArrays.cpp -o $(BIN)fillarrays.o $(INC)
 
-fillArrays.o: ./src/run/fillArrays.cpp
-	$(CXXC) $(COMPFL) ./src/run/fillArrays.cpp -o $(BIN)run/fillarrays.o $(INC)
-
-isOutOfBounds.o: ./src/run/isOutOfBounds.cpp
-	$(CXXC) $(COMPFL) ./src/run/isOutOfBounds.cpp -o $(BIN)run/isOutOfBounds.o $(INC)
+isOutOfBounds.o: $(SRC)run/isOutOfBounds.cpp
+	$(CXXC) $(COMPFL) $(SRC)run/isOutOfBounds.cpp -o $(BIN)isOutOfBounds.o $(INC)
