@@ -26,12 +26,12 @@ void Snake::setPosition(const Vector2f& pos) { m_snake.back().setPosition(pos); 
 
 void Snake::setOutlineColor(const Color& color, unsigned int thickness)
 {
-	for(auto& el : m_snake)
-	{
-		el.setOutlineColor(color);
-		el.setOutlineThickness(thickness);
-	}
+	m_isOutColor = true;
+	m_outColor = color;
+	m_thickness = thickness;
 }
+
+void Snake::unsetOutlineColor() { m_isOutColor = false; }
 
 const Color& 	Snake::getColor() const { return m_snake.back().getFillColor(); }
 const Vector2f& Snake::getPosition() const { return m_snake.back().getPosition(); }
@@ -56,6 +56,12 @@ void Snake::addFirst(const Vector2f& pos)
 	part.setFillColor(m_snakeColor);
 	part.setPosition(pos);
 
+	if(m_isOutColor)
+	{
+		part.setOutlineColor(m_outColor);
+		part.setOutlineThickness(m_thickness);
+	}
+
 	m_snake.push_front(part);
 }
 
@@ -65,6 +71,12 @@ void Snake::addLast(const Vector2f& pos)
 
 		part.setFillColor(m_snakeColor);
 		part.setPosition(pos);
+
+		if(m_isOutColor)
+		{
+			part.setOutlineColor(m_outColor);
+			part.setOutlineThickness(m_thickness);
+		}
 
 		m_snake.push_back(part);
 }

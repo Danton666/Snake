@@ -16,7 +16,9 @@ private:
 	Vector2f m_pos = Vector2f(0.f, 0.f);
 	Vector2f m_size = Vector2f(25.f, 25.f);
 
-	Color m_outColor = Color(Color::Black);
+	Color m_outColor = {};
+
+	bool m_isOutColor = false;
 	unsigned int m_thickness = 0;
 
 	list<RectangleShape> m_snake = {};
@@ -27,7 +29,8 @@ public:
 
 	void setColor(const Color& color);
 	void setPosition(const Vector2f& pos);
-	void setOutlineColor(const Color& color = Color(Color::Black), unsigned int thickness = 1);
+	void setOutlineColor(const Color& color, unsigned int thickness);
+	void unsetOutlineColor();
 
 	const Color& getColor() const;
 	const Vector2f&	getPosition() const;
