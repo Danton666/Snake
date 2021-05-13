@@ -27,6 +27,8 @@ public:
     Snake(RenderWindow* window);
     Snake(RenderWindow* window, const Vector2f& position);
 
+    ~Snake();
+
     void setColor(const Color& color);
     void setPosition(const Vector2f& pos);
     void setOutlineColor(const Color& color, unsigned int thickness);
