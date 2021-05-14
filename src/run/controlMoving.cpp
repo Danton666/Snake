@@ -1,5 +1,6 @@
 #include "run/controlMoving.hpp"
 
+// Snake movement control
 void controlMoving(const Event& event, Snake& snake, std::list<Event>& eventList)
 {
     if(event.key.code == Keyboard::Up)
@@ -14,6 +15,9 @@ void controlMoving(const Event& event, Snake& snake, std::list<Event>& eventList
     {
         eventList.pop_back();
 
+        // The snake will stop because nothing
+        // was pressed, simulate pressing a button so
+        // that the snake continues to move
         switch(eventList.back().key.code)
         {
             case Keyboard::Up:
