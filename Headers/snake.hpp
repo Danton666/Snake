@@ -23,6 +23,9 @@ private:
 
     list<RectangleShape> m_snake = {};
 
+private:
+    void init(const Vector2f& pos);
+
 public:
     Snake(RenderWindow* window);
     Snake(RenderWindow* window, const Vector2f& position);
@@ -47,6 +50,7 @@ public:
 
     void eraseLast();
     void eraseFirst();
+    void eraseAll(const Vector2f& pos);
 
     void setSpeed(unsigned int val);
 

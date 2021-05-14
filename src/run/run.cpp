@@ -35,7 +35,10 @@ int run(RenderWindow& window)
     // Make the snake
     Snake snake(&window);
     snake.setOutlineColor(Color::Black, 1);
-    snake.setPosition(Vector2f(300.f, 200.f));
+
+    Vector2f startSnakePos = Vector2f(window.getSize().x / 2, window.getSize().y / 2);
+
+    snake.setPosition(startSnakePos);
 
     //Make the apple
     Apple apple(&window, Vector2f(X[0 + rand() % x], Y[0 + rand() % y]));
@@ -122,20 +125,96 @@ int run(RenderWindow& window)
             /*increase the speed of the snake*/
             snake.setSpeed(++speed);
         }
-        // if the snake's out of bounds or it has eaten itself
-        else if(isOutOfBounds(snake, window) || isEatItself)
-        {
-            // Main thread sleeps for 1 second before the end of the game
-            this_thread::sleep_for(1s);
-
-            return 1;
-        }
 
         /*
         * Snake's moving when keys were pressed
         * The snake is controlled by <Up>, <Down>, <Right>, <Left>
         */
         controlMoving(event, snake, eventList);
+
+        // if the snake's out of bounds or it has eaten itself
+        if(isOutOfBounds(snake, window) || isEatItself)
+        {
+            // Main thread sleeps for 1 second before the end of the game
+            this_thread::sleep_for(1s);
+
+            //Text 'Do you want to start a new game?'
+            Text new_game;
+            new_game.setString("Do you wnat to start\n\t\t a new game?\n\t\t\t\t\tY/N");
+            new_game.setFont(font);
+            new_game.setCharacterSize(30);
+            new_game.setPosition(window.getSize().x / 2 - 200, window.getSize().y / 2 - 100);
+
+            /*Clearing the window*/
+            window.clear();
+
+            /*Line drawing*/
+            window.draw(line1);
+            window.draw(line2);
+            window.draw(line3);
+            window.draw(line4);
+            /*Line drawing*/
+
+            window.draw(new_game);
+
+            /*Displaying everything that was drawn*/
+            window.display();            
+
+            bool y_n_event(true);
+
+            while(y_n_event)
+            {
+                if(window.waitEvent(event))
+                {
+                    if(event.key.code == Keyboard::N)
+                        return 0;
+                    else if(event.key.code == Keyboard::Y)
+                    {
+                        //Zeros the snake
+                        snake.eraseAll(startSnakePos);
+
+                        //Set default speed of the snake
+                        speed = 5;
+                        snake.setSpeed(speed);
+
+                        //Zeros scores
+                        sc = 0;
+                        strScore = cpStrScore;
+                        strScore += to_string(sc);
+                        scores.setString(strScore);
+
+                        //Clear list of the events
+                        eventList.clear();
+
+                        // Set a new random position for the apple
+                        apple.setPosition(Vector2f(X[0 + rand() % x], Y[0 + rand() % y]));
+
+                        /*Clearing the window*/
+                        window.clear();
+
+                        /*Line drawing*/
+                        window.draw(line1);
+                        window.draw(line2);
+                        window.draw(line3);
+                        window.draw(line4);
+                        /*Line drawing*/
+
+                        /*Text drawing*/
+                        window.draw(scores);
+                        /*Text drawing*/
+
+                        apple.draw(); /*window.draw(apple)*/
+                        snake.draw(); /*window.draw(snake)*/
+
+                        /*Displaying everything that was drawn*/
+                        window.display();
+
+                        y_n_event = false;
+                    }
+                    else {}
+                }
+            }
+        }
 
         // In order to make the array too large 
         // Make it no more than 5

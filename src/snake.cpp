@@ -8,20 +8,27 @@ Snake::Snake(RenderWindow* window) : Snake(window, Vector2f(0.f, 0.f)) {}
 // Makes default snake with position [default position is (0.0, 0.0)]
 Snake::Snake(RenderWindow* window, const Vector2f& position) : m_window(window) 
 {
-    RectangleShape head(position);
-
-    head.setSize(m_size);
-    head.setFillColor(m_snakeColor);
-
-    m_snake.push_back(head);    
+    init(position);
 }
 /* ...} Constructors*/
 
 //Destructor
 Snake::~Snake() {}
 
-/*Methods {...*/
+/*Private methods {...*/
+void Snake::init(const Vector2f& pos)
+{
+    RectangleShape head;
 
+    head.setSize(m_size);
+    head.setFillColor(m_snakeColor);
+    head.setPosition(pos);
+
+    m_snake.push_back(head);       
+}
+/*...} Private methods*/
+
+/*Public methods {...*/
 // Sets the color(const sf::Color&) of the snake
 void Snake::setColor(const Color& color)
 {
@@ -117,6 +124,14 @@ void Snake::eraseLast() { m_snake.pop_back(); }
 // Removes the element of the snake at its beginnig
 void Snake::eraseFirst() { m_snake.pop_front(); }
 
+//Zeros the snake, needed for a new game
+void Snake::eraseAll(const Vector2f& pos) 
+{ 
+    m_snake.clear(); 
+
+    init(pos);
+}
+
 // Sets the speed of the snake
 void Snake::setSpeed(unsigned int val) { m_window->setFramerateLimit(val); }
 
@@ -130,4 +145,4 @@ void Snake::draw()
         m_window->draw(el);
 }
 
-/*...} Methods*/
+/*...} Public methods*/
