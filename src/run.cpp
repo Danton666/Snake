@@ -1,7 +1,4 @@
-#include "run/run.hpp"
-#include "run/fillArrays.hpp"
-#include "run/controlMoving.hpp"
-#include "run/isOutOfBounds.hpp"
+#include "tools.hpp"
 
 #include "snake.hpp"
 #include "apple.hpp"
@@ -9,6 +6,22 @@
 #include <string>
 #include <ctime>
 #include <thread>
+#include <cstdarg>
+
+void drawAll(RenderWindow& target, int count, ...)
+{
+    va_list list;
+    va_start(list, count);
+
+    target.clear();
+
+    for(int i = 0; i < count; ++i)
+        target.draw(va_arg(list, Drawable));
+
+    target.display();
+
+    va_end(list);
+}
 
 int run(RenderWindow& window)
 {
@@ -145,20 +158,9 @@ int run(RenderWindow& window)
             new_game.setCharacterSize(30);
             new_game.setPosition(window.getSize().x / 2 - 200, window.getSize().y / 2 - 100);
 
-            /*Clearing the window*/
-            window.clear();
-
-            /*Line drawing*/
-            window.draw(line1);
-            window.draw(line2);
-            window.draw(line3);
-            window.draw(line4);
-            /*Line drawing*/
-
-            window.draw(new_game);
-
-            /*Displaying everything that was drawn*/
-            window.display();            
+            /*Draw everything that was created here*/
+            drawAll(window, 5, 
+                line1, line2, line3, line4, new_game);
 
             bool y_n_event(true);
 
@@ -189,25 +191,9 @@ int run(RenderWindow& window)
                         // Set a new random position for the apple
                         apple.setPosition(Vector2f(X[0 + rand() % x], Y[0 + rand() % y]));
 
-                        /*Clearing the window*/
-                        window.clear();
-
-                        /*Line drawing*/
-                        window.draw(line1);
-                        window.draw(line2);
-                        window.draw(line3);
-                        window.draw(line4);
-                        /*Line drawing*/
-
-                        /*Text drawing*/
-                        window.draw(scores);
-                        /*Text drawing*/
-
-                        window.draw(apple);
-                        window.draw(snake);
-
-                        /*Displaying everything that was drawn*/
-                        window.display();
+                        /*Draw everything*/
+                        drawAll(window, 7, 
+                            line1, line2, line3, line4, scores, apple, snake);
 
                         y_n_event = false;
                     }
@@ -221,25 +207,8 @@ int run(RenderWindow& window)
         if(eventList.size() > 5)
             eventList.pop_front();
 
-        /*Clearing the window*/
-        window.clear();
-
-        /*Line drawing*/
-        window.draw(line1);
-        window.draw(line2);
-        window.draw(line3);
-        window.draw(line4);
-        /*Line drawing*/
-
-        /*Text drawing*/
-        window.draw(scores);
-        /*Text drawing*/
-
-        window.draw(apple); 
-        window.draw(snake); 
-
-        /*Displaying everything that was drawn*/
-        window.display();
+        drawAll(window, 7, 
+            line1, line2, line3, line4, scores, apple, snake);
     }
 
     return 0;

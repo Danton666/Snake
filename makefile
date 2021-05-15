@@ -9,8 +9,7 @@ SRC=./src/
 
 PRJCT=Snake
 
-TARGETS=controlMoving.o fillArrays.o isOutOfBounds.o
-TARGETS+=snake.o run.o apple.o main.o
+TARGETS=snake.o run.o apple.o main.o tools.o
 
 all: $(TARGETS)
 	$(CXXC) $(LINKFL) $(PRJCT) $(BIN)*.o $(LIB)
@@ -22,13 +21,14 @@ snake.o: $(SRC)snake.cpp
 apple.o: $(SRC)apple.cpp
 	$(CXXC) $(COMPFL)  $(SRC)apple.cpp -o $(BIN)apple.o $(INC)
 
-run.o: $(SRC)run/run.cpp
-	$(CXXC) $(COMPFL) $(SRC)run/run.cpp -o $(BIN)run.o $(INC)
+run.o: $(SRC)run.cpp
+	$(CXXC) $(COMPFL) $(SRC)run.cpp -o $(BIN)run.o $(INC)
+
+tools.o: $(SRC)tools.cpp
+	$(CXXC) $(COMPFL) $(SRC)tools.cpp -o $(BIN)tools.o $(INC)
 
 main.o: $(SRC)main.cpp
 	$(CXXC) $(COMPFL) $(SRC)main.cpp -o $(BIN)main.o $(INC)
-
-include src/run/makefile
 
 .PHONY:
 	clean, delete
