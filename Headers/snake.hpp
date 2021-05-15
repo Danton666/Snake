@@ -6,7 +6,7 @@
 #include "apple.hpp"
 #include "un.hpp"
 
-class Snake
+class Snake : public Drawable
 {
 
 private:
@@ -56,7 +56,7 @@ public:
 
     void move(const Vector2f& offset);
 
-    void draw();
+    virtual void draw(RenderTarget& target, RenderStates states) const;
 };
 
 

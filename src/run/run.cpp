@@ -203,8 +203,8 @@ int run(RenderWindow& window)
                         window.draw(scores);
                         /*Text drawing*/
 
-                        apple.draw(); /*window.draw(apple)*/
-                        snake.draw(); /*window.draw(snake)*/
+                        window.draw(apple);
+                        window.draw(snake);
 
                         /*Displaying everything that was drawn*/
                         window.display();
@@ -235,8 +235,8 @@ int run(RenderWindow& window)
         window.draw(scores);
         /*Text drawing*/
 
-        apple.draw(); /*window.draw(apple)*/
-        snake.draw(); /*window.draw(snake)*/
+        window.draw(apple); 
+        window.draw(snake); 
 
         /*Displaying everything that was drawn*/
         window.display();

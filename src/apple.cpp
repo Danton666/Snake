@@ -29,5 +29,5 @@ const Color& Apple::getColor() const { return m_apple.getFillColor(); }
 size_t Apple::getPointCount() const { return m_apple.getPointCount(); }
 
 // Draws the apple on the window
-void Apple::draw() { m_window->draw(m_apple); }
+void Apple::draw(RenderTarget& target, RenderStates states) const { target.draw(m_apple, states); }
 

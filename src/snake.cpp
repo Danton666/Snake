@@ -139,10 +139,10 @@ void Snake::setSpeed(unsigned int val) { m_window->setFramerateLimit(val); }
 void Snake::move(const Vector2f& offset) { m_snake.back().move(offset); }
 
 // Draws the snake on the window
-void Snake::draw()
+void Snake::draw(RenderTarget& target, RenderStates states) const
 {
-    for(const auto& el : m_snake)
-        m_window->draw(el);
+	for(const auto& el : m_snake)
+		target.draw(el, states);
 }
 
 /*...} Public methods*/

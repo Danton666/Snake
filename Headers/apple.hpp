@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "un.hpp"
 
-class Apple
+class Apple : public Drawable
 {
 
 private:
@@ -26,7 +26,7 @@ public:
     const Color& getColor() const;
     size_t getPointCount() const;
 
-    void draw();
+    virtual void draw(RenderTarget& target, RenderStates states) const;
 };
 
 #endif //__APPLE_HPP__
