@@ -5,8 +5,8 @@ To run this code you must the following commands: \
 	4. 'git clone https://github.com/Danton666/Snake' \
 	5. 'make' \
 	6. './Snake'
-\\
+\
 After these steps you can change and improve the code. \
 P.S: this code was written on Linux and tested there. \
-\
-Have a good day :) \
+\n
+Have a good day :)
