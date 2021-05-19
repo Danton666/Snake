@@ -1,11 +1,11 @@
 This is a simple snake which is written in C++ and partly with OOP. <br>
 To run this code you must the following commands:
 <ul>
-    <li>1. 'mkdir Snake'</li>
-    <li>2. 'cd Snake'</li>
-    <li>3. 'git clone https://github.com/Danton666/Snake'</li>
-    <li>4. 'make'</li>
-    <li>5. './Snake'</li>
+    <li>'mkdir Snake'</li>
+    <li>'cd Snake'</li>
+    <li>'git clone https://github.com/Danton666/Snake'</li>
+    <li>'make'</li>
+    <li>'./Snake'</li>
 </ul>
 
 After these steps you can change and improve the code. <br>
