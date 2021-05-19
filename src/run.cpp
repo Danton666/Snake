@@ -6,22 +6,6 @@
 #include <string>
 #include <ctime>
 #include <thread>
-#include <cstdarg>
-
-void drawAll(RenderWindow& target, int count, ...)
-{
-    va_list list;
-    va_start(list, count);
-
-    target.clear();
-
-    for(int i = 0; i < count; ++i)
-        target.draw(va_arg(list, Drawable));
-
-    target.display();
-
-    va_end(list);
-}
 
 int run(RenderWindow& window)
 {
@@ -54,7 +38,7 @@ int run(RenderWindow& window)
     snake.setPosition(startSnakePos);
 
     //Make the apple
-    Apple apple(&window, Vector2f(X[0 + rand() % x], Y[0 + rand() % y]));
+    Apple apple(Vector2f(X[0 + rand() % x], Y[0 + rand() % y]));
 
     /*Line making {*/
     //These are borders of the window
@@ -111,7 +95,7 @@ int run(RenderWindow& window)
         Event event;
         eventList.push_back(event);
         while(window.pollEvent(event))
-            if(event.type == Event::Closed) 
+            if(event.type == Event::Closed || event.key.code == Keyboard::Escape) 
                 window.close();
 
         /*

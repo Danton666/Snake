@@ -8,7 +8,6 @@ class Apple : public Drawable
 {
 
 private:
-    RenderWindow* m_window;
 
     CircleShape m_apple = CircleShape(12.f);
     Color m_color = Color(Color::Red);
@@ -16,7 +15,7 @@ private:
 
 
 public:
-    Apple(RenderWindow* window, const Vector2f& position = Vector2f(0.f, 0.f));
+    Apple(const Vector2f& position = Vector2f(0.f, 0.f));
 
     void setPosition(const Vector2f& pos);
     void setColor(const Color& color);

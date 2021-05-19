@@ -10,7 +10,7 @@ class Snake : public Drawable
 {
 
 private:
-    RenderWindow* m_window;
+    RenderWindow *m_window;
 
     Color m_snakeColor = Color(Color::Green);
     Vector2f m_pos = Vector2f(0.f, 0.f);

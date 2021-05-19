@@ -66,3 +66,18 @@ bool isOutOfBounds(const Snake& snake, const RenderWindow& window)
         snake.getPosition().y < 20.0
     );
 }
+
+void drawAll(RenderWindow& target, int count, ...)
+{
+    va_list list;
+    va_start(list, count);
+
+    target.clear();
+
+    for(int i = 0; i < count; ++i)
+        target.draw(va_arg(list, Drawable));
+
+    target.display();
+
+    va_end(list);
+}

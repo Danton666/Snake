@@ -1,7 +1,7 @@
 #include "apple.hpp"
 
 //Makes default apple
-Apple::Apple(RenderWindow* window, const Vector2f& position) : m_window(window)
+Apple::Apple(const Vector2f& position)
 {   
     m_pos = position;
 
