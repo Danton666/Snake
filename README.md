@@ -1,5 +1,5 @@
-This is a simple snake which is written in C++ and partly with OOP. <br>
-To run this code you must the following commands:
+This is a simple snake which is written in C++ with SFML and partly with OOP. <br>
+To run this code you must have SFML library installed and you need to run the following commands:
 <ul>
     <li>'mkdir Snake'</li>
     <li>'cd Snake'</li>
