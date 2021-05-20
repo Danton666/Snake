@@ -1,7 +1,7 @@
 This is a simple snake written in C++ with SFML and partly with OOP. <br><br>
 To run this code you must have the SFML library installed, and you need to run the following commands:
 <ol>
-    <li><pre>mkdir Snake</pre></li>
+    <li><pre><code>mkdir Snake</code></pre></li>
     <li>'cd Snake'</li>
     <li>'git clone https://github.com/Danton666/Snake'</li>
     <li>'make'</li>
