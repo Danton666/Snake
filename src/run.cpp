@@ -71,7 +71,7 @@ int run(RenderWindow& window)
 
     Font font;
 
-    if(!font.loadFromFile("../../Fonts/snake.otf"))
+    if(!font.loadFromFile("./Fonts/scores.otf"))
         return -1;
 
     Text scores;
