@@ -1,5 +1,5 @@
-This is a simple snake which is written in C++ with SFML and partly with OOP. <br><br>
-To run this code you must have SFML library installed and you need to run the following commands:
+This is a simple snake written in C++ with SFML and partly with OOP. <br><br>
+To run this code you must have the SFML library installed, and you need to run the following commands:
 <ol>
     <li>'mkdir Snake'</li>
     <li>'cd Snake'</li>
@@ -8,7 +8,7 @@ To run this code you must have SFML library installed and you need to run the fo
     <li>'./Snake'</li>
 </ol>
 
-After these steps you can change and improve the code. <br>
-P.S: this code was written on Linux and tested there. <br>
+After these steps, you can change and improve the code. <br>
+P.S this code was written on Linux and tested there. <br>
 
 Have a good day :) <br>
