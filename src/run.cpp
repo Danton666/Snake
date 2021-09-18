@@ -44,8 +44,8 @@ int run(RenderWindow& window)
     //These are borders of the window
     Color lineColor(153, 157, 201);
 
-    RectangleShape line1(Vector2f(window.getSize().x - 200, 25));
-    line1.setPosition(175, 0);
+    RectangleShape line1(Vector2f(window.getSize().x - 155, 25));
+    line1.setPosition(130, 0);
     line1.setFillColor(lineColor);
 
     RectangleShape line2(Vector2f(25, window.getSize().y));
@@ -71,7 +71,7 @@ int run(RenderWindow& window)
 
     Font font;
 
-    if(!font.loadFromFile("./Fonts/scores.otf"))
+    if(!font.loadFromFile("/usr/share/fonts/TTF/AkaashNormal.ttf"))
         return -1;
 
     Text scores;
@@ -137,9 +137,9 @@ int run(RenderWindow& window)
 
             //Text 'Do you want to start a new game?'
             Text new_game;
-            new_game.setString("Do you wnat to start\n\t\t a new game?\n\t\t\t\t\tY/N");
+            new_game.setString("Do you wnat to start\n\t a new game?\n\t\t\tY/N");
             new_game.setFont(font);
-            new_game.setCharacterSize(30);
+            new_game.setCharacterSize(40);
             new_game.setPosition(window.getSize().x / 2 - 200, window.getSize().y / 2 - 100);
 
             /*Draw everything that was created here*/

@@ -1,6 +1,8 @@
 #ignore bin files .o in the bin directory
 bin/
+build/
 
+*.o
 *.swp
 
 #ignore exe file Snake

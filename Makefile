@@ -1,10 +1,8 @@
 CXXC=g++
 COMPFL=-c -Wall -Wextra -std=c++14
 LINKFL=-o
-INC=-I./Headers/
 LIB=-lsfml-window -lsfml-graphics -lsfml-system
 
-BIN=./bin/
 SRC=./src/
 
 PRJCT=Snake
@@ -12,28 +10,28 @@ PRJCT=Snake
 TARGETS=snake.o run.o apple.o main.o tools.o
 
 all: $(TARGETS)
-	$(CXXC) $(LINKFL) $(PRJCT) $(BIN)*.o $(LIB)
+	$(CXXC) $(LINKFL) $(PRJCT) *.o $(LIB)
 
 
 snake.o: $(SRC)snake.cpp
-	$(CXXC) $(COMPFL) $(SRC)snake.cpp -o $(BIN)snake.o $(INC)
+	$(CXXC) $(COMPFL) $(SRC)snake.cpp -o snake.o
 
 apple.o: $(SRC)apple.cpp
-	$(CXXC) $(COMPFL)  $(SRC)apple.cpp -o $(BIN)apple.o $(INC)
+	$(CXXC) $(COMPFL)  $(SRC)apple.cpp -o apple.o
 
 run.o: $(SRC)run.cpp
-	$(CXXC) $(COMPFL) $(SRC)run.cpp -o $(BIN)run.o $(INC)
+	$(CXXC) $(COMPFL) $(SRC)run.cpp -o run.o
 
 tools.o: $(SRC)tools.cpp
-	$(CXXC) $(COMPFL) $(SRC)tools.cpp -o $(BIN)tools.o $(INC)
+	$(CXXC) $(COMPFL) $(SRC)tools.cpp -o tools.o
 
 main.o: $(SRC)main.cpp
-	$(CXXC) $(COMPFL) $(SRC)main.cpp -o $(BIN)main.o $(INC)
+	$(CXXC) $(COMPFL) $(SRC)main.cpp -o main.o
 
 .PHONY:
 	clean, delete
 clean:
-	rm -rf $(BIN)*.o
+	rm -rf *.o
 
 delete:
 	rm -f Snake

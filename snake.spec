@@ -6,7 +6,7 @@ Version: 1
 
 Release: 1
 
-License: No license
+License: Proprietary
 
 %description
 This is a simple snake game
